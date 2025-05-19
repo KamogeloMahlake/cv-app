@@ -1,9 +1,9 @@
-export function Input({required, id, label, type, value, onChange})
+export function Input({id, label, type, value, onChange})
 {
   return (
   <div> 
       <input 
-      required={required}
+      required={true}
       id={id}
       type={type}
       value={value}
