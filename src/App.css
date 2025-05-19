@@ -1,0 +1,35 @@
+#root {
+  max-width: 1280px;
+  text-align: center;
+}
+
+
+section, label {
+  display: flex;
+  flex-direction: column;
+}
+
+button {  
+  background-color: blue;
+  color: white;
+}
+
+button, input {
+  margin: 0.5rem;
+}
+
+input, textarea {
+  width: 90%;
+  border-radius: 8px;
+  border: 1px solid gray;
+  padding: 10px;
+}
+section button, select {
+  width: 90%;
+  margin: 0 auto;
+}
+
+textarea {
+  resize: vertical;
+  margin: 0 auto;
+}
