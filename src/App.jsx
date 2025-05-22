@@ -13,7 +13,7 @@ function App() {
   const [state, setState] = useState({
     currentView: 'Personal',
     currentPersonalInfo: {name: '', email: '', phone: ''},
-    currentEducation: {school: '', study: '', stay: ''},
+    currentEducation: {school: '', study: '', stay: '', location: ''},
     currentExperience: {company: '', position: '', responsibilities: '', from: '', to: ''},
     currentSkills: {skill: '', priority: 'Low'},
     currentLanguage: {language: '', priority: 'Low'},
@@ -58,10 +58,10 @@ function App() {
         setState({...state, personalInfo: state.currentPersonalInfo, currentView: 'Preview'});
         break;
       case 'ed':
-        setState({...state, education: [...state.education, state.currentEducation], currentEducation: {school: '', study: '', stay: ''}});
+        setState({...state, education: [...state.education, state.currentEducation], currentEducation: {school: '', study: '', stay: '', location: ''}});
         break;
       case 'ep':
-        setState({...state, experience: [...state.experience, state.currentEducation], currentExperience: {company: '', position: '', responsibilities: '', from: '', to: ''}})
+        setState({...state, experience: [...state.experience, state.currentExperience], currentExperience: {company: '', position: '', responsibilities: '', from: '', to: ''}})
         break;
       case 's':
         setState({...state, skills: [...state.skills, state.currentSkills], currentSkills: {skill: '', priority: 'Low'}});
@@ -80,6 +80,10 @@ function App() {
     setState({...state, currentView: e.target.id});
   }
 
+  const handleRemove = (id, array)  => {
+    setState({...state, [array]: state[array].filter((_item, index) => index != id)});
+  };
+
   return (
   <>
       <nav>
@@ -93,11 +97,11 @@ function App() {
       </nav>
       {state.currentView === 'Preview' && <Preview info={state} />}
       {state.currentView === 'Personal' && <PersonalInfo personalInfo={state.currentPersonalInfo} handleChange={handleChange} onClick={handleAdd}/>}
-      {state.currentView === 'Education' && <Education  education={state.currentEducation} handleChange={handleChange} handleAdd={handleAdd}/>}
-      {state.currentView === 'Experience' && <Experience experience={state.currentEducation} handleChange={handleChange} handleAdd={handleAdd}/>}
-      {state.currentView === 'Skills' && <Skills skills={state.currentSkills} handleChange={handleChange} onClick={handleAdd}/>}
-      {state.currentView === 'Languages' && <Languages languages={state.currentLanguage} handleChange={handleChange} onClick={handleAdd}/>}
-      {state.currentView === 'Projects' && <Project project={state.currentProject} handleChange={handleChange} onClick={handleAdd} />}
+      {state.currentView === 'Education' && <Education handleRemove={handleRemove} array={state.education} education={state.currentEducation} handleChange={handleChange} handleAdd={handleAdd}/>}
+      {state.currentView === 'Experience' && <Experience handleRemove={handleRemove} array={state.experience} experience={state.currentExperience} handleChange={handleChange} handleAdd={handleAdd}/>}
+      {state.currentView === 'Skills' && <Skills handleRemove={handleRemove} array={state.skills} skills={state.currentSkills} handleChange={handleChange} onClick={handleAdd}/>}
+      {state.currentView === 'Languages' && <Languages handleRemove={handleRemove} array={state.languages} languages={state.currentLanguage} handleChange={handleChange} onClick={handleAdd}/>}
+      {state.currentView === 'Projects' && <Project handleRemove={handleRemove} array={state.projects} project={state.currentProject} handleChange={handleChange} onClick={handleAdd} />}
   </>
   )
 }

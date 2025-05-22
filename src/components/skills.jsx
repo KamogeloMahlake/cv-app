@@ -1,6 +1,7 @@
+import { DisplayTechnicalSkills } from "./display";
 import { Input } from "./input";
 
-export function Skills({skills, handleChange, onClick})
+export function Skills({skills, handleChange, onClick, array, handleRemove})
 {
   return (
     <section>
@@ -14,6 +15,7 @@ export function Skills({skills, handleChange, onClick})
       </select>
       </label>
       <button onClick={() => onClick('s')}>Add Skill</button>
+      {array.length > 0 && <DisplayTechnicalSkills array={array} handleRemove={handleRemove} isSkill={true} />}
     </section>
   )
 }

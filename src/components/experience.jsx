@@ -1,6 +1,7 @@
+import { DisplayExperience } from "./display";
 import { Input } from "./input";
 
-export function Experience({experience, handleChange, handleAdd}) {
+export function Experience({experience, handleChange, handleAdd, array, handleRemove}) {
   return (
   <section>
       <h2>Experience</h2>
@@ -11,6 +12,7 @@ export function Experience({experience, handleChange, handleAdd}) {
       <label htmlFor="to">To:
       <Input label='To' type='date' required={false} id='to' value={experience.to} onChange={e => handleChange(e, 'ep')}/></label>
       <button onClick={() => handleAdd('ep')}>Add Job</button>
+      {array.length > 0 && <DisplayExperience experience={array} handleRemove={handleRemove}/>}
   </section>
   )
 }

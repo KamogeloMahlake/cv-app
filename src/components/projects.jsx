@@ -1,6 +1,7 @@
 import { Input } from "./input";
+import { DisplayProjects } from "./display";
 
-export function Project({project, handleChange, onClick}) {
+export function Project({project, handleChange, onClick, array, handleRemove}) {
   return (
   <section>
       <h2>Project</h2>
@@ -12,6 +13,7 @@ export function Project({project, handleChange, onClick}) {
       <label htmlFor="end">To:
       <Input label='end' type='date' id='end' value={project.end} onChange={e => handleChange(e, 'pr')}/></label>
       <button onClick={() => onClick('pr')}>Add Project</button>
+      {array.length > 0 && <DisplayProjects array={array} handleRemove={handleRemove} />}
   </section>
   )
 }

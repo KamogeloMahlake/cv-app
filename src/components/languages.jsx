@@ -1,6 +1,7 @@
+import { DisplayTechnicalSkills } from "./display";
 import { Input } from "./input";
 
-export function Languages({languages, handleChange, onClick}) {
+export function Languages({languages, handleChange, onClick, array, handleRemove}) {
   return (
   <section>
       <h2>Languages</h2>
@@ -13,7 +14,7 @@ export function Languages({languages, handleChange, onClick}) {
       </select>
       </label>
       <button onClick={() => onClick('l')}>Add Language</button>
-
+      {array.length > 0 && <DisplayTechnicalSkills array={array} isSkill={false} handleRemove={handleRemove}/>}
   </section>
   )
 }

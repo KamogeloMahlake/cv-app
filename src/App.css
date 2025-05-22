@@ -33,3 +33,8 @@ textarea {
   resize: vertical;
   margin: 0 auto;
 }
+
+.align {
+  text-align: left;
+  margin-left: 2rem; 
+}
