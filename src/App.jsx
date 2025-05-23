@@ -83,6 +83,10 @@ function App() {
   const handleRemove = (id, array)  => {
     setState({...state, [array]: state[array].filter((_item, index) => index != id)});
   };
+  const handlePrint = () => {
+    document.querySelectorAll('button').forEach(button => button.className = 'hidden');
+    print();
+  };
 
   return (
   <>
@@ -95,7 +99,7 @@ function App() {
         <NavButton title='Languages'  onClick={handleNavButton}/>
         <NavButton title='Projects'  onClick={handleNavButton}/>
       </nav>
-      {state.currentView === 'Preview' && <Preview info={state} />}
+      {state.currentView === 'Preview' && <Preview onClick={handlePrint} info={state} />}
       {state.currentView === 'Personal' && <PersonalInfo personalInfo={state.currentPersonalInfo} handleChange={handleChange} onClick={handleAdd}/>}
       {state.currentView === 'Education' && <Education handleRemove={handleRemove} array={state.education} education={state.currentEducation} handleChange={handleChange} handleAdd={handleAdd}/>}
       {state.currentView === 'Experience' && <Experience handleRemove={handleRemove} array={state.experience} experience={state.currentExperience} handleChange={handleChange} handleAdd={handleAdd}/>}

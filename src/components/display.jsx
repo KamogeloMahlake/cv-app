@@ -1,5 +1,4 @@
-export function DisplayEducation({education, handleRemove}) {
-  console.log(education);
+export function DisplayEducation({education, handleRemove, isPreview}) {
   return (
   <div>
       <h3 className="align">Education</h3>
@@ -15,14 +14,14 @@ export function DisplayEducation({education, handleRemove}) {
           <p><em>{study}</em></p>
           <p><em>{stay}</em></p>
         </div>
-        <button onClick={() => handleRemove(index, 'education')}>Remove Education</button>
+        {!isPreview && <button onClick={() => handleRemove(index, 'education')}>Remove Education</button>}
       </div>)
       })}
   </div>
   );
 }
 
-export function DisplayExperience({experience, handleRemove}) {
+export function DisplayExperience({experience, handleRemove, isPreview}) {
   return (
   <div>
       <h3>Experience</h3>
@@ -35,7 +34,7 @@ export function DisplayExperience({experience, handleRemove}) {
               <p>{responsibilities}</p>
           </div>
           <p>From: <em>{from}</em> To: <em>{to}</em></p>
-          <button onClick={() => handleRemove(index, 'experience')}>Remove Experience</button>
+          {!isPreview && <button onClick={() => handleRemove(index, 'experience')}>Remove Experience</button>}
         </div>
         )
       })}
@@ -43,9 +42,14 @@ export function DisplayExperience({experience, handleRemove}) {
   );
 }
 
-export function TechnicalSkills() {
+export function TechnicalSkills({skills, languages}) {
   return (
   <div>
+      <h3>Technical Skills</h3>
+      <hr />
+      {languages.length > 0 && <p>Languages: {languages.map(({language}, index) => languages.length === 1 || languages.length - index != 1  ? language : `and ${language}`).join(', ')}</p>}
+
+      {skills.length > 0 && <p>Skills: {skills.map(({skill}, index) => skills.length === 1 || skills.length - index != 1  ? skill : `and ${skill}`).join(', ')}</p>} 
   </div>
 
   );
@@ -76,7 +80,7 @@ export function DisplayTechnicalSkills({array, isSkill, handleRemove}) {
 
 }
 
-export function DisplayProjects({array, handleRemove}) {
+export function DisplayProjects({array, handleRemove, isPreview}) {
   return (
   <div>
       <h3>Projects</h3>
@@ -91,7 +95,7 @@ export function DisplayProjects({array, handleRemove}) {
               <a>URL: {url}</a>
               <p>From: <em>{start}</em> To: <em>{end}</em></p>
           </div>
-          <button onClick={() => handleRemove(index, 'projects')}>Remove Project</button>
+          {!isPreview && <button onClick={() => handleRemove(index, 'projects')}>Remove Project</button>}
         </div>
         )
       })}
